@@ -101,10 +101,10 @@ $(combo_2nd_arch_prefix)TARGET_GLOBAL_CFLAGS += \
 			-ffunction-sections \
 			-fdata-sections \
 			-funwind-tables \
-			-fstack-protector-strong \
+			-fstack-protector-strong -fno-tree-vectorize  \
 			-Wa,--noexecstack \
 			-Werror=format-security \
-			-Wno-error=unused -Wno-error=unused-parameter -Wno-unused-but-set-variable \
+			-Wno-error=unused -Wno-error=unused-parameter -Wno-unused-but-set-variable -Wno-error=array-bounds -Wno-error=clobbered -Wno-error=maybe-uninitialized -Wno-error=parentheses -Wno-error=strict-overflow -Wno-error=unused-variable -Wno-unknown-attributes \
 			-D_FORTIFY_SOURCE=2 \
 			-fno-short-enums \
 			-no-canonical-prefixes \
@@ -130,6 +130,7 @@ $(combo_2nd_arch_prefix)TARGET_GLOBAL_LDFLAGS += \
 			-Wl,--fatal-warnings \
 			-Wl,--icf=safe \
 			-Wl,--hash-style=gnu \
+                        -Wl,--as-needed -Wl,--gc-sections -Wl,--relax -Wl,--sort-common \
 			-Wl,--no-undefined-version \
 			$(arch_variant_ldflags)
 
@@ -153,7 +154,7 @@ libm_root := bionic/libm
 $(combo_2nd_arch_prefix)TARGET_GLOBAL_CFLAGS += \
 			-w \
 			-O2 -funswitch-loops -fpredictive-commoning -fgcse-after-reload -ftree-loop-vectorize -ftree-slp-vectorize -fvect-cost-model -ftree-partial-pre -fipa-cp-clone \
-			-mvectorize-with-neon-quad
+			-mvectorize-with-neon-quad -Wno-unknown-warning-option
  
 $(combo_2nd_arch_prefix)TARGET_GLOBAL_CFLAGS += $(BOARD_GLOBAL_CFLAGS)
 $(combo_2nd_arch_prefix)TARGET_GLOBAL_CPPFLAGS += $(BOARD_GLOBAL_CPPFLAGS)
