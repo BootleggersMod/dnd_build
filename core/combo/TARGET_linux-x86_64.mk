@@ -131,6 +131,10 @@ endif
 
 TARGET_GLOBAL_LDFLAGS += -m64
 
+$(combo_2nd_arch_prefix)TARGET_GLOBAL_CFLAGS += $(BOARD_GLOBAL_CFLAGS)
+$(combo_2nd_arch_prefix)TARGET_GLOBAL_CPPFLAGS += $(BOARD_GLOBAL_CPPFLAGS)
+$(combo_2nd_arch_prefix)TARGET_GLOBAL_LDFLAGS += $(BOARD_GLOBAL_LDFLAGS)
+
 TARGET_GLOBAL_LDFLAGS += -Wl,-z,noexecstack
 TARGET_GLOBAL_LDFLAGS += -Wl,-z,relro -Wl,-z,now
 TARGET_GLOBAL_LDFLAGS += -Wl,--build-id=md5
