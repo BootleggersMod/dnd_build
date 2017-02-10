@@ -2247,7 +2247,7 @@ CM_TARGET_PACKAGE := $(PRODUCT_OUT)/$(CM_VERSION).zip
 otapackage: $(INTERNAL_OTA_PACKAGE_TARGET)
 bacon: otapackage
 	$(hide) ln -f $(INTERNAL_OTA_PACKAGE_TARGET) $(CM_TARGET_PACKAGE)
-	$(hide) $(MD5SUM) $(CM_TARGET_PACKAGE) > $(CM_TARGET_PACKAGE).md5sum
+	$(hide) $(MD5SUM) $(CM_TARGET_PACKAGE) | sed "s|$(PRODUCT_OUT)/||" > $(CM_TARGET_PACKAGE).md5sum
 	echo -e ${CL_CYA} "                                                                                                                         ";
 	echo -e ${CL_CYA} " ________              ______ _____   __                                  ________     ____________            _________ ";
 	echo -e ${CL_CYA} "  ___  __ \_____ __________  /____  | / /___________________   _______________  __ \_______  __/__(_)_________________  /";
