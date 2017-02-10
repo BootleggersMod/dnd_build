@@ -23,6 +23,11 @@ print_build_config_vars := \
   BUILD_ID \
   OUT_DIR
 
+ifneq ($(RECOVERY_VARIANT),)
+print_build_config_vars += \
+  RECOVERY_VARIANT
+endif
+
 ifneq (,$(filter true, $(CYNGN_TARGET) $(EXTERNAL_CLEAN_TARGET)))
 ifeq ($(CYNGN_TARGET),true)
 print_build_config_vars += \
