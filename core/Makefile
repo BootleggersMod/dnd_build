@@ -2227,15 +2227,22 @@ $(INTERNAL_OTA_PACKAGE_TARGET): $(BUILT_TARGET_FILES_PACKAGE)
 	   $(if $(OEM_OTA_CONFIG), -o $(OEM_OTA_CONFIG)) \
 	   $(BUILT_TARGET_FILES_PACKAGE) $@
 
-CM_TARGET_PACKAGE := $(PRODUCT_OUT)/lineage-$(LINEAGE_VERSION).zip
+CM_TARGET_PACKAGE := $(PRODUCT_OUT)/$(CM_VERSION).zip
 
 .PHONY: otapackage bacon
 otapackage: $(INTERNAL_OTA_PACKAGE_TARGET)
 bacon: otapackage
 	$(hide) ln -f $(INTERNAL_OTA_PACKAGE_TARGET) $(CM_TARGET_PACKAGE)
 	$(hide) $(MD5SUM) $(CM_TARGET_PACKAGE) | sed "s|$(PRODUCT_OUT)/||" > $(CM_TARGET_PACKAGE).md5sum
-	@echo "Package Complete: $(CM_TARGET_PACKAGE)" >&2
-
+	echo -e ${CL_CYA} "                                                                                                                         ";
+	echo -e ${CL_CYA} " ________              ______ _____   __                                  ________     ____________            _________ ";
+	echo -e ${CL_CYA} "  ___  __ \_____ __________  /____  | / /___________________   _______________  __ \_______  __/__(_)_________________  /";
+	echo -e ${CL_CYA} "  __  / / /  __  /_  ___/_  //_/_   |/ /_  _ \_  ___/_  ___/   __  ___/  _ \_  / / /  _ \_  /_ __  /__  __ \  _ \  __  / ";
+	echo -e ${CL_CYA} "  _  /_/ // /_/ /_  /   _  ,<  _  /|  / /  __/(__  )_(__  )    _  /   /  __/  /_/ //  __/  __/ _  / _  / / /  __/ /_/ /  ";
+	echo -e ${CL_CYA} "  /_____/ \__,_/ /_/    /_/|_| /_/ |_/  \___//____/ /____/     /_/    \___//_____/ \___//_/    /_/  /_/ /_/\___/\__,_/   ";
+	echo -e ${CL_CYA} "                                                                                                                         ";
+	echo -e ${CL_CYA} "                                                                                                                         ";
+	echo "Package Complete: $(CM_TARGET_PACKAGE)"
 endif    # build_ota_package
 # -----------------------------------------------------------------
 # The factory package
